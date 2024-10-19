@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <link rel="stylesheet" href="/style/main.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login and Signup</title>
+        <script src="scripts/main.js">
+            
+        </script>
+    </head>
+    <body>
+    <script src="scripts/main.js">
+
+    </script>
+    <div class="container" id="container">
+        <!-- login section-->
+        <div class="form-container signin-container">
+            <form action="#">
+                <h1>Sign in</h1>
+
+                <div class="logo-con">
+                    <a href="#"><img src="/image/facebook.png" alt="Facebook login"></a>
+                    <a href="#"><img src="/image/google.png" alt="Google login"></a>
+                </div>
+
+                <span>or use your account</span>
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <a href="#">Forgot your password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+
+        <!-- signup section -->
+        <div class="signup-container">
+            <form action="#">
+                <h1>Create Account</h1>
+
+                <div class="logo-con">
+                    <a href="#"><img src="/image/facebook.png" alt="Facebook login"></a>
+                    <a href="#"><img src="/image/google.png" alt="Google login"></a>
+                </div>
+
+                <span>or use your email for registration</span>
+                <input type="text" placeholder="First Name" name="fname">
+                <input type="text" placeholder="Last Name" name="lname">
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <input type="password" placeholder="Confirm Password" name="com-password">
+                <button>Sign Up</button>
+            </form>
+        </div>
+
+        <!-- Overlay (Welcome Back) -->
+        <div class="welcome">
+                <div class="overlay-panel overlay-left">
+                    <h1>Don't have account</h1>
+                    <img src="image/logo.png" alt="">
+                    <button id="signup">Sign Up</button>
+                </div>
+        </div>
+    </div>
+
+
+    </body>
 </html>
