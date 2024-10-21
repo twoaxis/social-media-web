@@ -24,7 +24,7 @@ body {
 }
 .welcome{
     /* background: #FF416C; */
-	background: linear-gradient(to right,#8a1e1e ,#FF4B2B);
+	background: linear-gradient(to right,rgb(94, 25, 25) ,#a72222);
     border-radius: 0 10px 10px 0;
     color: #fff;
     display: flex;
@@ -81,7 +81,7 @@ form input {
 
 #two-logo{
     width: 200px;
-    height: 60px;
+    /* border: #0b0b0b solid 2px; */
 }
 button {
 	color: #FFFFFF;
