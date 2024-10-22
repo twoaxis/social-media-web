@@ -24,7 +24,7 @@ body {
 }
 .welcome{
     /* background: #FF416C; */
-	background: linear-gradient(to right,rgb(94, 25, 25) ,#a72222);
+	background: linear-gradient(to right,rgb(94, 25, 25) ,#1f0101e6);
     border-radius: 0 10px 10px 0;
     color: #fff;
     display: flex;
@@ -46,6 +46,12 @@ body {
     flex: 1;
 }
 
+.names{
+    display: flex;
+}
+.lname{
+    margin-left: 10px;
+}
 
 h2 {
     font-size: 35px;
@@ -58,6 +64,7 @@ h2 {
     border-radius: 50%;
     color: #333;
 }
+
 
 
 .signin-container p {
@@ -103,3 +110,6 @@ hr{
     margin-right: auto; 
 }
 
+.user-names{
+    display: flex ;
+}
