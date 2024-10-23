@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style/main.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SignIn</title>
+        <!-- <script src="scripts/main.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        
+    
+        <div class="container" id="container">
+            <div class="auth">
+                <div id="error-message" class="error-message"></div>
+                <form id="signinForm">
+                    <h1>Sign in</h1><br>
+                    <input type="email" placeholder="Email" name="email" required>
+                    <input type="password" placeholder="Password" name="password" required min="8" max="32">
+                    <a href="forgetPass.html" class="forgot-password">Forgot your password?</a><br>
+                    <button type="submit" class="signin-btn">Sign In</button>
+                </form>
+            </div>
+        
+        <div class="welcome">
+            <div class="n-account">
+                    <img src="image/logo2.png" id="two-logo"><br><br>
+                    <h1>Don't have account ?</h1><br>
+                    <button id="signup" onclick="window.location.href='signup.html';">Sign Up</button>
+                </div>
+            </div>
+        </div>
+        
+        <script src="scripts/login.js"></script>
+
+    </body>
+    </html>
