@@ -11,8 +11,13 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     const confirmPassword = document.querySelector('#signupForm input[name="com-password"]').value;
     const name = fname + " " +lname
 
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.style.display = 'none';
+    errorMessage.innerHTML = '';
+
     if (password !== confirmPassword) {
-        alert("Passwords do not match. Please try again.");
+        errorMessage.style.display = 'block';
+        errorMessage.innerHTML = "Passwords do not match. Please try again." ;
         return;
     }
 
@@ -27,11 +32,18 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         .then(response => {
             console.log('Signup Success:', response.data);
             alert('Account created successfully!');
-            // Redirect to login page after successful signup
-            window.location.href = "login.html";
+            localStorage.setItem('name', uname);
+            window.location.href = "dashboard.html";
         })
         .catch(error => {
+            errorMessage.style.display = 'block';
             console.error('Signup Error:', error);
-            alert('Signup failed. Please try again.');
+            if (error.response.status === 400) {
+                errorMessage.innerHTML = '<strong>Invalid fields or name format!</strong> Please check your inputs.';
+            } else if (error.response.status === 409) {
+                errorMessage.innerHTML = '<strong>E-mail or username already taken!</strong> Please try again.';
+            } else {
+                errorMessage.innerHTML = '<strong>Signup failed!</strong> Please try again later.';
+            }       
         });
 });

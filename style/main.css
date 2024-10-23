@@ -113,3 +113,14 @@ hr{
 .user-names{
     display: flex ;
 }
+.error-message {
+    color: #fff;
+    background-color: #f44336; 
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: none; 
+}
+
