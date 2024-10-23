@@ -29,7 +29,7 @@ function renderNotifications() {
 notificationIcon.addEventListener('click', (event) => {
     event.stopPropagation();
     notificationDropdown.style.display = notificationDropdown.style.display === 'none' || notificationDropdown.style.display === '' ? 'block' : 'none';
-    
+
     // Render notifications when the dropdown is displayed
     if (notificationDropdown.style.display === 'block') {
         renderNotifications();

@@ -63,7 +63,7 @@ button {
     .navbar{
         flex-direction: column;
     }
- 
+
 }
 
 .notification-icon {
@@ -79,7 +79,7 @@ button {
 .notification-dropdown {
     display: none;
     position: absolute;
-    top: 60px; 
+    top: 60px;
     right: 70px;
     width: 300px;
     max-height: 500px;
