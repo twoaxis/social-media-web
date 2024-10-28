@@ -40,9 +40,22 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
             console.error('Signup Error:', error);
             if (error.response.status === 400) {
                 errorMessage.innerHTML = '<strong>Invalid fields or name format!</strong> Please check your inputs.';
-            } else if (error.response.status === 409) {
-                errorMessage.innerHTML = '<strong>E-mail or username already taken!</strong> Please try again.';
-            } else {
+            } 
+            else if (error.response.status === 409) 
+            {
+                const errorCode = error.response.data.code;
+                if (errorCode === 'auth/email-taken') {
+                        errorMessage.innerHTML = '<strong>Email is already taken!</strong> Please use a different email.';
+                    } else if (errorCode === 'auth/username-taken') {
+                        errorMessage.innerHTML = '<strong>Username is already taken!</strong> Please choose another username.';
+                    } else {
+                        alert(errorCode)
+                        errorMessage.innerHTML = '<strong>E-mail or username already taken!</strong> Please try again.';
+                        errorMessage.innerHTML = errorCode
+                    }
+            } 
+            else 
+            {
                 errorMessage.innerHTML = '<strong>Signup failed!</strong> Please try again later.';
             }       
         });
