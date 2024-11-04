@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+</head>
+<body>
+    <h1 id="selected-name">Search Result</h1>
+
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Display the selected name
+        const selectedName = getQueryParameter('name');
+        if (selectedName) {
+            document.getElementById('selected-name').textContent = selectedName;
+        }
+    </script>
+</body>
+</html>
