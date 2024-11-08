@@ -31,9 +31,8 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         })
         .then(response => {
             console.log('Signup Success:', response.data);
-            alert('Account created successfully!');
             localStorage.setItem('name', uname);
-            window.location.href = "dashboard.html";
+            window.location.href = "nav.htm";
         })
         .catch(error => {
             errorMessage.style.display = 'block';

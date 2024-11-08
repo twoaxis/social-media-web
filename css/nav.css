@@ -131,3 +131,95 @@ button {
 .notification-item:hover {
     background-color: #f0f0f0;
 }
+
+
+
+
+/* Search container styling */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 0;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    border: 1px solid #a72222;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.search-input.visible {
+    width: 150px;
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .navbar-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "navbar-left"
+            "navbar-center"
+            "navbar-right";
+        text-align: center;
+    }
+    .search-input.visible {
+        width: 150px;
+    }
+}
+/* Target the container for the icons */
+.navbar-nav {
+    display: flex;
+    flex-direction: row-reverse; /* Reverse order of the icons */
+}
+
+/* Specific styles to reposition each icon */
+#plus-icon {
+    order: -1; /* Moves the Plus icon to the far left */
+}
+
+#messenger-icon {
+    margin-left: auto; /* Pushes Messenger icon to the far right */
+}
+.move-right {
+    margin-left: 1px; /* Adjust the value as needed */
+    transition: margin-left 0.3s ease; /* Smooth transition */
+}
+
+.search-container {
+    position: relative; /* Positioning for suggestion box */
+}
+.suggestion-box {
+    display: none;
+    position: absolute;
+    top: 60px; 
+    width: 300px;
+    max-height: 500px;
+    overflow-y: auto;
+    background-color: #e1dada;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+}
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
+}
+.navbar {
+    background-color: #eee;
+    border-bottom: 2px solid #aaa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px; /* Increase top/bottom padding for more space */
+}
+
+
