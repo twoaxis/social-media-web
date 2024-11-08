@@ -14,7 +14,7 @@ document.getElementById('signinForm').addEventListener('submit', function(event)
         })
         .then(response => {
             console.log('Login Success:', response.data);
-            window.location.href = "dashboard.html";
+            window.location.href = "nav.htm";
         })
         .catch(error => {
             console.error('Login Error:', error);
