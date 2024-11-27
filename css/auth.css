@@ -123,4 +123,14 @@ hr{
     text-align: center;
     display: none; 
 }
+.forgot-password {
+    color: #888;
+    font-size: 14px;
+    margin-top: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
+.forgot-password:hover {
+    color: #555;
+}

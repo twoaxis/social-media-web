@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Code</title>
+    <link rel="stylesheet" href="css/forgetPassword.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Verify Your Email</h2>
+            <p>Enter the 6-digit code we sent to your email address.</p>
+            
+            <form id="verifyForm">
+                <div class="input-group">
+                    <input type="text" maxlength="1" class="code-input" id="code1" />
+                    <input type="text" maxlength="1" class="code-input" id="code2" />
+                    <input type="text" maxlength="1" class="code-input" id="code3" />
+                    <input type="text" maxlength="1" class="code-input" id="code4" />
+                    <input type="text" maxlength="1" class="code-input" id="code5" />
+                    <input type="text" maxlength="1" class="code-input" id="code6" />
+                </div>
+                <div class="message"></div>
+                <div class="error"></div>
+                <button class="button button-primary" type="submit" id="send-code">Verify Code</button>
+                <button class="button button-resend" type="button" id="resendCode">Resend Code</button>
+            </form>
+
+            <button class="button button-secondary" onclick="window.location.href='forgetPass.html'">Go Back</button>
+        </div>
+    </div>
+
+    <script src="js/verifyCode.js" ></script>
+</body>
+</html>
