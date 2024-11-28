@@ -6,11 +6,24 @@
     <title>Verify Code</title>
     <link rel="stylesheet" href="css/forgetPassword.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>.error-message {
+        color: #fff;
+        background-color: #f44336; 
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        display: none; 
+    }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="form-container">
-            <h2>Verify Your Email</h2>
+            <div id="error-message" class="error-message"></div>
+            <h2 id="reset" style="display: none;">reset Your password</h2>
+            <h2 id="verify" style="display: none;">Verify Your Email</h2>
             <p>Enter the 6-digit code we sent to your email address.</p>
             
             <form id="verifyForm">
@@ -28,10 +41,21 @@
                 <button class="button button-resend" type="button" id="resendCode">Resend Code</button>
             </form>
 
-            <button class="button button-secondary" onclick="window.location.href='forgetPass.html'">Go Back</button>
+            <button class="button button-secondary" onclick="goback()">Go Back</button>
         </div>
     </div>
 
     <script src="js/verifyCode.js" ></script>
+    <script>
+        function goback(){
+            const ref = localStorage.getItem('ref')
+            if(ref==='login'|| ref==='signup'){
+                window.location.href='login.html'
+            }
+            else{
+                window.location.href='forgetPass.html'
+            }
+        }
+    </script>
 </body>
 </html>
