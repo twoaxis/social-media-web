@@ -8,12 +8,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('reset').style.display = 'block';
     }
     codeInputs.forEach((input, index) => {
+        // Handle input events
         input.addEventListener('input', () => {
             if (input.value.length === 1 && index < codeInputs.length - 1) {
                 codeInputs[index + 1].focus();
             }
         });
+    
+        // Handle backspace events
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Backspace' && input.value === '' && index > 0) {
+                codeInputs[index - 1].focus();
+            }
+        });
     });
+    
     const sendCodeButton = document.getElementById('send-code'); //forget pass page 
     if (sendCodeButton) {
         sendCodeButton.addEventListener('click', verifyCode);

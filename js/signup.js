@@ -26,9 +26,8 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         .then(response => {
             const sessionId = response.data.sessionId;
             localStorage.setItem('sessionId', sessionId);
-            // localStorage.setItem('email', email); 
             localStorage.setItem('ref', 'signup');
-
+            // localStorage.setItem('email', email); 
             console.log('Signup Success:', response.data);
             window.location.href = "verifyCode.html"; // Redirect to verify email
         })
