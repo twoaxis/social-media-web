@@ -221,5 +221,128 @@ button {
     align-items: center;
     padding: 15px 20px; /* Increase top/bottom padding for more space */
 }
+/* Post Styling */
+.post {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+.post-header {
+    display: flex;
+    align-items: center;
+}
+
+/* Media (Image and Video) */
+.media {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Comment Section */
+.comments-section {
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.comment {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #eee;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 20px;
+}
+
+form {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #a72222;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Compact form styling */
+.compact-form {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    resize: none;
+    margin: 8px 0;
+}
+
+.file-input {
+    display: inline-block;
+    font-size: 0.9rem;
+    margin-right: auto;
+}
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+
+#charCount {
+    font-size: 0.85rem;
+    color: #888;
+    margin-left: 10px;
+}
+
+.submit-button {
+    background-color: #a72222;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.submit-button:hover {
+    background-color: #922020;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .compact-form {
+        padding: 8px;
+    }
+
+    .submit-button {
+        padding: 6px 10px;
+    }
+
+    #charCount {
+        font-size: 0.8rem;
+    }
+}
 
