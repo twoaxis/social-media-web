@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="title"></title>
+    <link rel="stylesheet" href="css/profile-view-page.css" />
+  </head>
+  <body>
+    <nav>
+      <img src="./img/logo.png" alt="logo" width="100px" />
+      <img src="./icons/person-circle.svg" alt="icon" />
+    </nav>
+    <div class="backdrop-friends"></div>
+    <div class="container">
+      <div class="background">
+        <div class="profile-img">
+          <div class="content">
+            <img src="./img/pexels-italo-melo-881954-2379004.jpg" alt="img" />
+          </div>
+        </div>
+      </div>
+      <div class="detalis">
+        <div class="info">
+          <h3>Italo</h3>
+          <div class="followers">
+            <div class="follower">
+              <img src="./icons/people-fill.svg" alt="icon" />
+              <h4><span>10</span> Followers</h4>
+            </div>
+            <div class="following">
+              <img src="./icons/person-fill.svg" alt="icon" />
+              <h4><span>10</span> Following</h4>
+            </div>
+          </div>
+          <div class="buttons">
+            <button>follow</button>
+            <button>Add Friend</button>
+          </div>
+          <div class="bio" style="margin-top: 10px">
+            <p>Make World Better ✨</p>
+          </div>
+        </div>
+        <div class="fields" style="height: 100vh">
+          <div class="posts">
+            <div class="posts-container">
+              <h3>Posts</h3>
+              <div
+                class="content"
+                style="
+                  width: 400px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  row-gap: 25px;
+                  padding-bottom: 20px;
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="friends-all">
+            <div class="friends">
+              <button class="show-friends">Friends</button>
+              <div class="friends-content">
+                <h3>Friends</h3>
+                <div class="content"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/profile-view-page.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </body>
+</html>
