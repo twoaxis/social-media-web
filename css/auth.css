@@ -84,6 +84,7 @@ form input {
     color: #888;
     font-size: 14px;
     display: flex;
+    padding-left: 4px;
 }
 
 #two-logo{
@@ -122,5 +123,71 @@ hr{
     font-weight: bold;
     text-align: center;
     display: none; 
+}
+
+.signup-btn{
+    margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+    body{
+        padding: 0 50px;
+    }
+    .container{
+        flex-direction: column-reverse;
+        height: fit-content;
+    }
+    .auth{
+        padding-top: 20px;
+    }
+
+    .welcome{
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px){
+    body{
+        padding: 0;
+    }
+
+    .container{
+        transform: scale(0.85);
+    }
+    #two-logo{
+        width: 150px;
+    }
+
+    .welcome{
+        height: 230px;
+    }
+
+    .welcome h1{
+        font-size: 25px;
+    }
+
+    #signupForm h1, #signinForm h1{
+        font-size: 25px;
+    }
+
+    .auth{
+        padding: 30px;
+    }
+
+    #signupForm input::placeholder, #signinForm input::placeholder{
+        font-size: 13px;
+    }
+
+    .forgot-password{
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 325px){
+    .welcome h1{
+        font-size: 23px;
+    }
 }
 
