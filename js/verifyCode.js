@@ -51,6 +51,8 @@ function verifyCode(event) {
             console.log('Code verified successfully:', response.data);
             localStorage.setItem('token', response.data.token);
             window.location.href = 'nav.htm'; 
+            localStorage.removeItem('sessionId');
+            localStorage.removeItem('ref');
         })
         .catch(error => {
             errorMessage.style.display = 'block'

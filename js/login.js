@@ -5,7 +5,9 @@ document.getElementById('signinForm').addEventListener('submit', function(event)
     const email = document.querySelector('#signinForm input[name="email"]').value;
     const password = document.querySelector('#signinForm input[name="password"]').value;
     const errorMessage = document.getElementById('error-message');
+    const timeout = document.getElementById('timeout');
     errorMessage.style.display = 'none';
+    timeout.style.display = 'none';
     errorMessage.innerHTML = '';
 
     // POST request to authenticate the user
@@ -36,4 +38,13 @@ document.getElementById('signinForm').addEventListener('submit', function(event)
                 errorMessage.innerHTML = '<strong>Login failed!</strong> Please try again later.';
             }
         });
+});
+
+window.addEventListener('load', () => {
+    if (localStorage.getItem('ref') ==='timeout') {
+        timeout.style.display = 'block';
+        setTimeout(() => {
+            timeout.style.display = 'none';
+        }, 5000); 
+    }
 });

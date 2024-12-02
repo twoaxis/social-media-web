@@ -61,6 +61,7 @@ function verifyTokenWithAPI() {
         
         console.error("Token verification failed:", error);
         localStorage.removeItem('token');
+        localStorage.setItem('ref','timeout')
         window.location.href = 'login.html'; 
     });
 }
