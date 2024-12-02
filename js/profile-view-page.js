@@ -8,18 +8,6 @@ const backdropFreinds = document.querySelector(".backdrop-friends");
 title.innerText = titleText;
 const num = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const token = 
-
-axios.get("http://18.193.81.175/users/salint", {
-  headers:{
-    Authorization: `Bearer ${token}`
-  }
-}).then((res) =>{
-  console.log(res.data);
-}).catch((error) => {
-  console.error(error);
-})
-
 const firendsContainer = document.querySelector(
   ".friends .friends-content .content"
 );
