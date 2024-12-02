@@ -29,7 +29,7 @@ function renderNotifications() {
 notificationIcon.addEventListener('click', (event) => {
     event.stopPropagation();
     notificationDropdown.style.display = notificationDropdown.style.display === 'none' || notificationDropdown.style.display === '' ? 'block' : 'none';
-    
+
     // Render notifications when the dropdown is displayed
     if (notificationDropdown.style.display === 'block') {
         renderNotifications();
@@ -41,4 +41,112 @@ document.addEventListener('click', (event) => {
     if (!notificationDropdown.contains(event.target) && event.target !== notificationIcon) {
         notificationDropdown.style.display = 'none';
     }
+});
+
+// search behavior 
+// ^^^^^^^^^^^^^^^
+document.addEventListener('DOMContentLoaded', function() {
+    const searchIcon = document.getElementById('search-icon');
+    const searchInput = document.getElementById('search-input');
+    const suggestionBox = document.getElementById('suggestion-box');
+    const searchContainer = document.querySelector('.nav-icons-center'); // This assumes the search bar is inside this container
+
+
+    
+    function showSearchInput() {
+        searchIcon.style.display = 'none'; 
+        searchInput.classList.add('visible');
+        searchInput.focus(); 
+    }
+
+    // Function to hide the search input and show the search icon
+    function hideSearchInput() {
+        searchIcon.style.display = 'flex'; 
+        searchInput.classList.remove('visible'); 
+        searchInput.value = ''; 
+        suggestionBox.style.display = 'none'; 
+    }
+
+
+    // Show the search input when the search icon is clicked
+    searchIcon.addEventListener('click', function(event) {
+        event.preventDefault();
+        showSearchInput();
+    });
+
+    function capitalizeWords(str) {
+        return str
+            .split(' ') 
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
+            .join(' '); 
+    }
+
+    // Handle input and display suggestions
+    searchInput.addEventListener('input', async function () {
+        const query = searchInput.value.toLowerCase();
+    
+        try {
+            
+            const token = localStorage.getItem('token');
+            const response = await axios.get('http://18.193.81.175/users/search', {
+                headers: {
+                    Authorization: `Bearer ${token}` 
+                },
+                params: { query: query }
+            });
+            
+            const suggestions = response.data; 
+            suggestionBox.innerHTML = ''; 
+            if (query) {
+                const filteredSuggestions = suggestions.filter(user =>
+                    user.name.toLowerCase().includes(query)
+                );
+    
+                filteredSuggestions.forEach(user => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.classList.add('suggestion-item');
+                    suggestionItem.textContent = capitalizeWords(user.name); 
+                    suggestionItem.addEventListener('click', function () {
+                        redirectToSearchResult(user.name); 
+                    });
+                    suggestionBox.appendChild(suggestionItem);
+                });
+    
+                suggestionBox.style.display = filteredSuggestions.length ? 'block' : 'none';
+            } else {
+                suggestionBox.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Error fetching suggestions:', error);
+            suggestionBox.innerHTML = '<div class="error-message"></div>';
+            suggestionBox.style.display = 'none';
+        }
+    });
+    // Hide search input and show the search icon when the user presses Enter
+    searchInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            redirectToSearchResult(searchInput.value);
+            hideSearchInput();
+        }
+    });
+
+    // Redirect to searchResult.html
+    function redirectToSearchResult(selectedName) {
+        window.location.href = `searchResult.html?name=${selectedName}`;
+    }
+
+    // Close the search input if the user clicks anywhere outside the search container
+    document.addEventListener('click', function(event) {
+        if (!searchContainer.contains(event.target)) {
+            hideSearchInput();
+        }
+    });
+
+    // Close suggestion box if input is empty or user clicks outside of it
+    document.addEventListener('click', function(event) {
+        if (!suggestionBox.contains(event.target) && !searchInput.contains(event.target)) {
+            suggestionBox.style.display = 'none';
+        }
+    });
 });
