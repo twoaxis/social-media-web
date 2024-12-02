@@ -42,39 +42,31 @@ document.addEventListener('click', (event) => {
         notificationDropdown.style.display = 'none';
     }
 });
-// ====================
+
+// search behavior 
+// ^^^^^^^^^^^^^^^
 document.addEventListener('DOMContentLoaded', function() {
     const searchIcon = document.getElementById('search-icon');
     const searchInput = document.getElementById('search-input');
     const suggestionBox = document.getElementById('suggestion-box');
     const searchContainer = document.querySelector('.nav-icons-center'); // This assumes the search bar is inside this container
 
-    const suggestions = [
-        "Ahmed Salah",
-        "Bob Smith",
-        "Charlie Brown",
-        "David Wilson",
-        "Eve Davis",
-        "Frank Miller",
-        "Ahmed",
-        "Salah",
-        "Radwan"
-    ];
 
-    // Function to show the search input and hide the search icon
+    
     function showSearchInput() {
-        searchIcon.style.display = 'none'; // Hide the search icon
-        searchInput.classList.add('visible'); // Show the search input
-        searchInput.focus(); // Focus on the input
+        searchIcon.style.display = 'none'; 
+        searchInput.classList.add('visible');
+        searchInput.focus(); 
     }
 
     // Function to hide the search input and show the search icon
     function hideSearchInput() {
-        searchIcon.style.display = 'flex'; // Show the search icon again
-        searchInput.classList.remove('visible'); // Hide the search input
-        searchInput.value = ''; // Clear the search input
-        suggestionBox.style.display = 'none'; // Hide the suggestions box
+        searchIcon.style.display = 'flex'; 
+        searchInput.classList.remove('visible'); 
+        searchInput.value = ''; 
+        suggestionBox.style.display = 'none'; 
     }
+
 
     // Show the search input when the search icon is clicked
     searchIcon.addEventListener('click', function(event) {
@@ -82,43 +74,66 @@ document.addEventListener('DOMContentLoaded', function() {
         showSearchInput();
     });
 
+    function capitalizeWords(str) {
+        return str
+            .split(' ') 
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
+            .join(' '); 
+    }
+
     // Handle input and display suggestions
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', async function () {
         const query = searchInput.value.toLowerCase();
-        suggestionBox.innerHTML = ''; // Clear previous suggestions
-        if (query) {
-            const filteredSuggestions = suggestions.filter(suggestion =>
-                suggestion.toLowerCase().includes(query)
-            );
-
-            filteredSuggestions.forEach(suggestion => {
-                const suggestionItem = document.createElement('div');
-                suggestionItem.classList.add('suggestion-item');
-                suggestionItem.textContent = suggestion;
-                suggestionItem.addEventListener('click', function() {
-                    redirectToSearchResult(suggestion);
-                });
-                suggestionBox.appendChild(suggestionItem);
+    
+        try {
+            
+            const token = localStorage.getItem('token');
+            const response = await axios.get('http://18.193.81.175/users/search', {
+                headers: {
+                    Authorization: `Bearer ${token}` 
+                },
+                params: { query: query }
             });
-
-            suggestionBox.style.display = filteredSuggestions.length ? 'block' : 'none';
-        } else {
+            
+            const suggestions = response.data; 
+            suggestionBox.innerHTML = ''; 
+            if (query) {
+                const filteredSuggestions = suggestions.filter(user =>
+                    user.name.toLowerCase().includes(query)
+                );
+    
+                filteredSuggestions.forEach(user => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.classList.add('suggestion-item');
+                    suggestionItem.textContent = capitalizeWords(user.name); 
+                    suggestionItem.addEventListener('click', function () {
+                        redirectToSearchResult(user.name); 
+                    });
+                    suggestionBox.appendChild(suggestionItem);
+                });
+    
+                suggestionBox.style.display = filteredSuggestions.length ? 'block' : 'none';
+            } else {
+                suggestionBox.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Error fetching suggestions:', error);
+            suggestionBox.innerHTML = '<div class="error-message"></div>';
             suggestionBox.style.display = 'none';
         }
     });
-
     // Hide search input and show the search icon when the user presses Enter
     searchInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            hideSearchInput();
             redirectToSearchResult(searchInput.value);
+            hideSearchInput();
         }
     });
 
-    // Redirect to the search results page with the selected name
+    // Redirect to searchResult.html
     function redirectToSearchResult(selectedName) {
-        window.location.href = `searchResult.html?name=${encodeURIComponent(selectedName)}`;
+        window.location.href = `searchResult.html?name=${selectedName}`;
     }
 
     // Close the search input if the user clicks anywhere outside the search container

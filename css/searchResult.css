@@ -1,4 +1,4 @@
-/* General page background */
+/*searchResult.css */
 body {
     background-color: #e3dede;
     font-family: Arial, sans-serif;
@@ -109,6 +109,15 @@ body {
     opacity: 0.9;
 }
 
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #f8f9fa;
+}
+
+.suggestion-item:hover {
+    background-color: #e9ecef;
+}
 
 
 
