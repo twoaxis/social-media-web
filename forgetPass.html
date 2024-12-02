@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/forgetPassword.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Forget Password</title>
 </head>
 <body>
+    <div class="container">
+        <h2>Forgot Password</h2>
+        <form id="forget-password-form">
+            <input id="email" type="email" placeholder="Enter your email" required>
+            <button id="sendcode" class="button button-primary" type="submit" >Send Code</button>
+            <p class="message">Check your email for the code!</p>
+            <p class="error">An error occurred. Please try again.</p>
+        </form>
+        <button class="button button-secondary" onclick="window.location.href='login.html'">Go Back</button>
+    </div>
+    <script src="/js/forgetpass.js"></script>
 </body>
 </html>

@@ -24,10 +24,12 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     // POST request to register the user
     axios.post('http://18.193.81.175/auth/signup', { name, username: uname, email, password })
         .then(response => {
-            const token = response.data.token;
-            localStorage.setItem('token', token);
+            const sessionId = response.data.sessionId;
+            localStorage.setItem('sessionId', sessionId);
+            localStorage.setItem('ref', 'signup');
+            // localStorage.setItem('email', email); 
             console.log('Signup Success:', response.data);
-            window.location.href = "nav.htm"; // Redirect to home page after signup
+            window.location.href = "verifyCode.html"; // Redirect to verify email
         })
         .catch(error => {
             errorMessage.style.display = 'block';
