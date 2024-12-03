@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f8f9fa;
+  font-family: serif, sans-serif;
+}
+
+.container {
+  max-width: 600px; 
+  width: 100%; 
+  margin: 0 auto;
+  padding: 0 15px; 
+  box-sizing: border-box;
+}
+
+.card {
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.card .user-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #a7222a;
+  cursor: pointer;
+}
+
+.card .username {
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  word-wrap: break-word; 
+}
+
+.card .comment-box {
+  background-color: #f9f8f9;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 10px;
+  width: 100%;
+  word-wrap: break-word; 
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  color: #333; 
+  font-size: 15px; 
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 0.5px solid #ccc;
+  border-bottom: 0.5px solid #ccc;
+  padding: 6px 0;
+}
+
+.actions i {
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #a7222a;
+  margin-right: 3px; 
+}
+
+.actions .bi-heart {
+  margin-left: 130px; 
+}
+
+.actions .bi-chat-right-text {
+  margin-left: 200px; 
+}
+
+.actions i:hover {
+  color: #000;
+}
+
+.comment-input {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  box-sizing: border-box; 
+}
+
+.comment-input input[type="text"] {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.comment-input input[type="text"]:focus {
+  outline: none;
+  border-color: #ddd;
+  box-shadow: 0 0 5px #ddd;
+}
+
+.custom-btn {
+  background-color: #a7222a;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.custom-btn:hover {
+  background-color: #a7222a;
+}
+
+/* إضافة قواعد responsive */
+@media screen and (max-width: 768px) {
+  .actions i {
+    font-size: 1.1rem;
+  }
+
+  .container {
+    padding: 0 10px; 
+  }
+
+  .actions .bi-heart {
+    margin-left: 50px; 
+  }
+
+  .actions .bi-chat-right-text {
+    margin-left: 100px; 
+  }
+}
+

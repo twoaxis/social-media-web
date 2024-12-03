@@ -1,0 +1,378 @@
+openapi: 3.0.3
+info:
+  title: TwoAxis Social
+  contact:
+    email: contact@twoaxis.xyz
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+
+servers:
+  - url: 18.193.81.175
+    variables: {}
+    description: Main Server
+paths:
+  /auth/signup:
+    post:
+      tags:
+        - Authentication
+      summary: Create a new account.
+      description: Create a new account.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Mohamed Eldahtoury
+                username:
+                  type: string
+                  example: Salint
+                email:
+                  type: string
+                  example: salint@twoaxis.xyz
+                password:
+                  type: string
+                  example: nyc_the_coolest
+        required: true
+      responses:
+        '200':
+          description: Account created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkZ1Y2sgb2ZmIiwiaWF0IjoxNTE2MjM5MDIyfQ.sVWeaEuEW_Mq0b193r5AUJtYbPOaUaRP-bw0VD9j7fY
+        '400':
+          description: |
+            Missing or incorrect fields.
+
+            `name` must be English letters only.
+        '409':
+          description: |
+            E-mail or username taken.
+            `code` can be:
+              - auth/email-taken
+              - auth/username-taken
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: auth/email-taken
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login to your account.
+      description: Login to your account.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: salint@twoaxis.xyz
+                password:
+                  type: string
+                  example: nyc_the_coolest
+        required: true
+      responses:
+        '200':
+          description: Logged into your account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkZ1Y2sgb2ZmIiwiaWF0IjoxNTE2MjM5MDIyfQ.sVWeaEuEW_Mq0b193r5AUJtYbPOaUaRP-bw0VD9j7fY
+        '400':
+          description: Missing or incorrect fields.
+        '401':
+          description: Invalid email or password
+  /auth/logout:
+    post:
+      tags:
+        - Authentication
+      summary: Logout to your account.
+      description: Logout to your account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example: >-
+                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwiZXhwIjoxNzMwODA3Nzg2LCJpc3MiOiJ0d29heGlzLnh5eiJ9.8-v7W_WLRLkDcoMBOVrfoX1BFCDdwAVHy2z5Dt0Pe9w
+              description: test
+      responses:
+        '200':
+          description: Successfully logged out.
+        '401':
+          description: Unauthorized - invalid or missing token.
+  /posts:
+    get: 
+      tags:
+      - Posts
+      summary: Retrieve posts in home page (people you're following)
+      parameters:
+        - name: Authorization
+          description: Auth token retrieved from authentication endpoints.
+          in: header
+          required: true
+          schema:
+            type: string
+            example: >-
+              Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkZ1Y2sgb2ZmIiwiaWF0IjoxNTE2MjM5MDIyfQ.sVWeaEuEW_Mq0b193r5AUJtYbPOaUaRP-bw0VD9j7fY
+      responses:
+        '200':
+          description: Returns user data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    content:
+                      type: string
+                      example: Sample post content
+                    createdAt:
+                      type: string
+                      format: date-time
+                      example: '2024-11-02T11:07:25+02:00'
+                    author:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        username:
+                          type: string
+                          example: Salint
+                        name:
+                          type: string
+                          example: Mohamed Eldahtoury
+        '403':
+          description: Unauthorized
+    put:
+      tags:
+        - Posts
+      summary: Create a new post
+      parameters:
+        - name: Authorization
+          description: Auth token retrieved from authentication endpoints.
+          in: header
+          required: true
+          schema:
+            type: string
+            example: >-
+              Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkZ1Y2sgb2ZmIiwiaWF0IjoxNTE2MjM5MDIyfQ.sVWeaEuEW_Mq0b193r5AUJtYbPOaUaRP-bw0VD9j7fY
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Today, I ate pizza!
+      responses:
+        '200':
+          description: Returns user data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  postId:
+                    type: integer
+                    example: 1
+        '400':
+          description: Missing or incorrect fields.
+        '401':
+          description: Missing or invalid token.
+        '403':
+          description: Unauthorized
+  /users/{username}:
+    get:
+      tags:
+        - Users
+      summary: Get user profile
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns user data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Mohamed Eldahtoury
+                  username:
+                    type: string
+                    example: Salint
+                  followerCount:
+                    type: integer
+                    example: 0
+                  followingCount:
+                    type: integer
+                    example: 0
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        content:
+                          type: string
+                          example: Sample post content
+                        createdAt:
+                          type: string
+                          format: date-time
+                          example: '2024-11-02T11:07:25+02:00'
+                        author:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            username:
+                              type: string
+                              example: Salint
+                            name:
+                              type: string
+                              example: Mohamed Eldahtoury
+        '400':
+          description: Missing or incorrect fields.
+        '404':
+          description: User not found
+  /users/{username}/follow:
+    post:
+      summary: Follow a user
+      description: Endpoint to follow a user by their username.
+      tags:
+        - Users
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The username of the user to follow.
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          example: >-
+            Bearer
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwiZXhwIjoxNzMwODA3Nzg2LCJpc3MiOiJ0d29heGlzLnh5eiJ9.8-v7W_WLRLkDcoMBOVrfoX1BFCDdwAVHy2z5Dt0Pe9w
+          description: JWT token for authorization.
+      responses:
+        '200':
+          description: Successfully followed the user.
+        '400':
+          description: following yourself.
+        '409':
+          description: Already following the user.
+  /users/{username}/followers:
+    get:
+      summary: Get followers of a user
+      description: Returns a list of followers for the specified user.
+      tags:
+        - Users
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The username of the user whose followers are to be retrieved.
+      responses:
+        '200':
+          description: Successfully retrieved the list of followers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    Username:
+                      type: string
+                      example: string
+                    Name:
+                      type: string
+                      example: string
+        '404':
+          description: User not found.
+  /users/{username}/following:
+    get:
+      summary: Get users followed by a user
+      description: Returns a list of users that the specified user is following.
+      tags:
+        - Users
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The username of the user whose following list is to be retrieved.
+      responses:
+        '200':
+          description: Successfully retrieved the list of users being followed.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    Username:
+                      type: string
+                      example: string
+                    Name:
+                      type: string
+                      example: string
+        '404':
+          description: User not found.
+

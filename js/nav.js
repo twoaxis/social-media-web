@@ -1,7 +1,6 @@
-// Get the notification icon and dropdown elements
 const notificationIcon = document.getElementById('notification-icon');
 const notificationDropdown = document.getElementById('notificationDropdown');
-
+const token=localStorage.getItem("authToken");
 // notifications
 const notifications = [
     { title: "New Friend Request", description: "You have a new friend request from TuQaaa." },
@@ -14,9 +13,9 @@ const notifications = [
     { title: "blablabla", description: "blablablablablabaaaaaa." }
 ];
 
-// Function to render notifications
+// render notifications
 function renderNotifications() {
-    notificationDropdown.innerHTML = '<h4>Notifications</h4>'; // Reset the dropdown content
+    notificationDropdown.innerHTML = '<h4>Notifications</h4>'; 
     notifications.forEach(notification => {
         const notificationItem = document.createElement('div');
         notificationItem.classList.add('notification-item');
@@ -25,113 +24,82 @@ function renderNotifications() {
     });
 }
 
-// Toggle notification dropdown visibility on click
 notificationIcon.addEventListener('click', (event) => {
     event.stopPropagation();
     notificationDropdown.style.display = notificationDropdown.style.display === 'none' || notificationDropdown.style.display === '' ? 'block' : 'none';
-
-    // Render notifications when the dropdown is displayed
+    
     if (notificationDropdown.style.display === 'block') {
         renderNotifications();
     }
 });
 
-// Close the dropdown if clicking outside of it
 document.addEventListener('click', (event) => {
     if (!notificationDropdown.contains(event.target) && event.target !== notificationIcon) {
         notificationDropdown.style.display = 'none';
     }
 });
-// ====================
-document.addEventListener('DOMContentLoaded', function() {
-    const searchIcon = document.getElementById('search-icon');
-    const searchInput = document.getElementById('search-input');
-    const suggestionBox = document.getElementById('suggestion-box');
-    const searchContainer = document.querySelector('.nav-icons-center'); // This assumes the search bar is inside this container
 
-    const suggestions = [
-        "Ahmed Salah",
-        "Bob Smith",
-        "Charlie Brown",
-        "David Wilson",
-        "Eve Davis",
-        "Frank Miller",
-        "Ahmed",
-        "Salah",
-        "Radwan"
-    ];
 
-    // Function to show the search input and hide the search icon
-    function showSearchInput() {
-        searchIcon.style.display = 'none'; // Hide the search icon
-        searchInput.classList.add('visible'); // Show the search input
-        searchInput.focus(); // Focus on the input
+const loginData = {
+    email: 'salint@twoaxis.xyz',  
+    password: 'nyc_the_coolest'  ,
+
+  };
+  fetch('http://18.193.81.175/auth/login', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email: 'salint@twoaxis.xyz', password: 'nyc_the_coolest' })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.token) {
+        console.log("Logged in successfully! Token:", data.token);
+        localStorage.setItem('authToken', data.token);
+    } else {
+        console.error("Login failed:", data);
     }
+})
+.catch(error => console.error('Login Error:', error));
 
-    // Function to hide the search input and show the search icon
-    function hideSearchInput() {
-        searchIcon.style.display = 'flex'; // Show the search icon again
-        searchInput.classList.remove('visible'); // Hide the search input
-        searchInput.value = ''; // Clear the search input
-        suggestionBox.style.display = 'none'; // Hide the suggestions box
+ 
+function getPosts(token) {
+  fetch('http://18.193.81.175/posts', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
     }
+  })
+  .then(response => response.json())
+  .then(posts => {
+    console.log("Posts received:", posts);  
+    displayPosts(posts);
+  })
+  .catch(error => console.error('Error retrieving posts:', error));
+}
 
-    // Show the search input when the search icon is clicked
-    searchIcon.addEventListener('click', function(event) {
-        event.preventDefault();
-        showSearchInput();
+  function displayPosts(posts) {
+    const postsContainer = document.getElementById('postsContainer');
+    postsContainer.innerHTML = ''; 
+  
+    posts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.classList.add('post');
+      postElement.innerHTML = `
+        <h3>${post.author.name} (@${post.author.username})</h3>
+        <p>${post.content}</p>
+        <small>Posted on: ${new Date(post.createdAt).toLocaleString()}</small>
+      `;
+      postsContainer.appendChild(postElement);
     });
-
-    // Handle input and display suggestions
-    searchInput.addEventListener('input', function() {
-        const query = searchInput.value.toLowerCase();
-        suggestionBox.innerHTML = ''; // Clear previous suggestions
-        if (query) {
-            const filteredSuggestions = suggestions.filter(suggestion =>
-                suggestion.toLowerCase().includes(query)
-            );
-
-            filteredSuggestions.forEach(suggestion => {
-                const suggestionItem = document.createElement('div');
-                suggestionItem.classList.add('suggestion-item');
-                suggestionItem.textContent = suggestion;
-                suggestionItem.addEventListener('click', function() {
-                    redirectToSearchResult(suggestion);
-                });
-                suggestionBox.appendChild(suggestionItem);
-            });
-
-            suggestionBox.style.display = filteredSuggestions.length ? 'block' : 'none';
-        } else {
-            suggestionBox.style.display = 'none';
-        }
-    });
-
-    // Hide search input and show the search icon when the user presses Enter
-    searchInput.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            hideSearchInput();
-            redirectToSearchResult(searchInput.value);
-        }
-    });
-
-    // Redirect to the search results page with the selected name
-    function redirectToSearchResult(selectedName) {
-        window.location.href = `searchResult.html?name=${encodeURIComponent(selectedName)}`;
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      getPosts(token);  
     }
-
-    // Close the search input if the user clicks anywhere outside the search container
-    document.addEventListener('click', function(event) {
-        if (!searchContainer.contains(event.target)) {
-            hideSearchInput();
-        }
-    });
-
-    // Close suggestion box if input is empty or user clicks outside of it
-    document.addEventListener('click', function(event) {
-        if (!suggestionBox.contains(event.target) && !searchInput.contains(event.target)) {
-            suggestionBox.style.display = 'none';
-        }
-    });
-});
+  });
+  
