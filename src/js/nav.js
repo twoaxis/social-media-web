@@ -157,25 +157,26 @@ document.addEventListener('click', (event) => {
 });
 
 async function fetchUserData() {
-    const token = 'Bearer YOUR_AUTH_TOKEN';
+   /*const token = `Bearer ${localStorage.getItem('token')}`;
     try {
         document.getElementById('name').placeholder = 'Loading...';
-        const response = await fetch('http://18.193.81.175/users/YOUR_USERNAME', {
+        const response = await fetch(`http://18.193.81.175/users/${localStorage.getItem('token').split(".")[1]}`, {
             method: 'GET',
             headers: {
                 'Authorization': token,
                 'Content-Type': 'application/json'
             }
         });
+
+
         if (!response.ok) throw new Error('Failed to fetch user data.');
-        
         const userData = await response.json();
         document.getElementById('name').value = userData.name || 'Guest User';
         document.getElementById('profilePic').value = userData.profilePic || 'img/default-profile.png';
     } catch (error) {
         console.error('Error fetching user data:', error);
         alert('Unable to load profile. Please try again later.');
-    }
+    }*/
 }
 
 document.addEventListener('DOMContentLoaded', fetchUserData);

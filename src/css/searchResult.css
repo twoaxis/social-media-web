@@ -1,4 +1,5 @@
-/*searchResult.css */
+@import "master.css";
+
 body {
     background-color: #e3dede;
     font-family: Arial, sans-serif;

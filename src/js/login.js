@@ -17,7 +17,7 @@ document.getElementById('signinForm').addEventListener('submit', function(event)
             if (status == 'complete') {
                 localStorage.setItem('token', response.data.token);
                 console.log('Login Success:', response.data);
-                window.location.href = "nav.htm"; // Redirect to home page after login
+                window.location.href = "searchResult.js"; // Redirect to home page after login
             }
             else{
                 const sessionId = response.data.sessionId;

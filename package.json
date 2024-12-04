@@ -8,7 +8,6 @@
     "build:css": "cpx './src/css/**/*' './build/css'",
     "build:js": "cpx './src/js/**/*' './build/js'",
     "build:img": "cpx './src/img/**/*' './build/img'",
-    "build:webfonts": "cpx './src/webfonts/**/*' './build/webfonts'",
     "build": "npm run build:html && npm run build:css && npm run build:js && npm run build:img",
     "watch": "onchange \"src/**/*\" -- npm run build",
     "serve": "live-server build",
