@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>'2 Axis Navbar'</title>
-        <link rel="stylesheet" href="css/nav.css">
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    </head>
-    <body>
+
         <div id="loading"></div>
         <div id="content" style="display: none;">
             <nav class="navbar">
@@ -33,8 +23,8 @@
                 <a class="nav-link" href="#"><i class="bi bi-person-circle"></i></a>
             </div>
         </nav>
-        
-        
+
+
         <div class="notification-dropdown" id="notificationDropdown">
             <h4>Notifications</h4>
             <div id="notificationList"> </div>
@@ -46,29 +36,9 @@
             <div class="notification-item"><strong>Latest Updates  </strong>Check out the latest updates.</div>
         </div>
         <script src="js/auth.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/nav.js"></script>
     </div>
 
-    <div class="main-content">
-        <h1>Create a Post</h1>
-        <form id="postForm" class="compact-form">
-            <input type="hidden" id="name" required>
-            <input type="hidden" id="profilePic" required>
-            <textarea id="content" placeholder="What's on your mind?" maxlength="500" required></textarea>
-            <div class="form-footer">
-                <input type="file" id="media" accept="image/*,video/*" class="file-input">
-                <span id="charCount">0/500</span>
-                <button type="submit" class="submit-button">Post</button>
-            </div>
-        </form>
-        <div id="postsContainer"></div>
-    </div>
-   
-   
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/nav.js"></script>
-
-</body>
-</html>
