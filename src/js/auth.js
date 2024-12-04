@@ -57,8 +57,7 @@ function verifyTokenWithAPI() {
         document.getElementById('content').style.display = 'block';
         console.log("Token is valid:", response.data);
     })
-    .catch(error => {
-        
+    .catch(error => {localStorage.getItem('token')
         console.error("Token verification failed:", error);
         localStorage.removeItem('token');
         localStorage.setItem('ref','timeout')
