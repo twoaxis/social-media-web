@@ -1,0 +1,39 @@
+{
+  "name": "social-media-web",
+  "version": "1.0.0",
+  "description": "Website for social media application",
+  "main": "index.js",
+  "scripts": {
+    "build:html": "posthtml -c posthtml.json --no-interactive",
+    "build:css": "cpx './src/css/**/*' './build/css'",
+    "build:js": "cpx './src/js/**/*' './build/js'",
+    "build:img": "cpx './src/img/**/*' './build/img'",
+    "build:webfonts": "cpx './src/webfonts/**/*' './build/webfonts'",
+    "build": "npm run build:html && npm run build:css && npm run build:js && npm run build:img",
+    "watch": "onchange \"src/**/*\" -- npm run build",
+    "serve": "live-server build",
+    "start": "npm run build && concurrently \"npm run watch\" \"npm run serve\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twoaxis/social-media-web.git"
+  },
+  "author": "TwoAxis",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/twoaxis/social-media-web/issues"
+  },
+  "homepage": "https://github.com/twoaxis/social-media-web#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "cpx": "^1.5.0",
+    "htmlnano": "^2.1.1",
+    "live-server": "^1.2.2",
+    "onchange": "^7.1.0",
+    "postcss": "^8.4.49",
+    "posthtml": "^0.16.6",
+    "posthtml-cli": "^0.10.0",
+    "posthtml-include": "^2.0.1",
+    "posthtml-modules": "^0.9.1"
+  }
+}
