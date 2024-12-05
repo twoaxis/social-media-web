@@ -156,6 +156,46 @@ document.addEventListener('click', (event) => {
     }
 });
 
+// Logout button
+document.addEventListener('DOMContentLoaded', function () {
+    const logoutIcon = document.querySelector('.bi-box-arrow-right');
+
+    logoutIcon.addEventListener('click', async function (event) {
+        event.preventDefault();
+
+        try {
+            // Get the token from local storage or a cookie (adjust as per your implementation)
+            const token = localStorage.getItem('token'); // or `document.cookie` for cookies
+
+            if (!token) {
+                alert("You're not logged in.");
+                return;
+            }
+            const response = await fetch('http://18.193.81.175/auth/logout', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (response.status === 200) {
+                localStorage.removeItem('token'); 
+                window.location.href = 'login.html';
+            } else if (response.status === 401) {
+                console.log('Invalid or missing token. Please log in again.');
+                window.location.href = 'login.html';
+            } else {
+                console.log('An unexpected error occurred.');
+            }
+        } catch (error) {
+            console.error('Logout failed:', error);
+            console.log('Failed to log out. Please try again later.');
+        }
+    });
+});
+
+
+
 async function fetchUserData() {
    /*const token = `Bearer ${localStorage.getItem('token')}`;
     try {
