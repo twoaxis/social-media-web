@@ -17,7 +17,7 @@ document.getElementById('signinForm').addEventListener('submit', function(event)
             if (status == 'complete') {
                 localStorage.setItem('token', response.data.token);
                 console.log('Login Success:', response.data);
-                window.location.href = "searchResult.js"; // Redirect to home page after login
+                window.location.href = "index.html"; // Redirect to home page after login
             }
             else{
                 const sessionId = response.data.sessionId;
@@ -46,5 +46,6 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             timeout.style.display = 'none';
         }, 5000); 
+        localStorage.removeItem('ref')
     }
 });
