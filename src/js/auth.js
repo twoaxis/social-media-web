@@ -54,7 +54,7 @@ function verifyTokenWithAPI() {
     .then(response => {
         // If the token is valid, display the content
         document.getElementById('loading').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
+        document.getElementById('contentt').style.display = 'block';
         console.log("Token is valid:", response.data);
     })
     .catch(error => {localStorage.getItem('token')
