@@ -302,3 +302,45 @@ document.getElementById('content').addEventListener('input', function() {
     const charCount = this.value.length;
     document.getElementById('charCount').innerText = `${charCount}/500`;
 });
+
+
+/*
+function getPosts(token) {
+  fetch('http://18.193.81.175/posts', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  .then(response => response.json())
+  .then(posts => {
+    //alert("done",token)
+    console.log("Posts received:", posts);  
+    displayPosts(posts);
+  })
+  .catch(error => console.error('Error retrieving posts:', error));
+}
+
+  function displayPosts(posts) {
+    const postsContainer = document.getElementById('postsContainer');
+    postsContainer.innerHTML = ''; 
+  
+    posts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.classList.add('post');
+      postElement.innerHTML = `
+        <h3>${post.author.name} (@${post.author.username})</h3>
+        <p>${post.content}</p>
+        <small>Posted on: ${new Date(post.createdAt).toLocaleString()}</small>
+      `;
+      postsContainer.appendChild(postElement);
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token')
+    const bt = document.getElementById('loadMorePosts');
+    bt.addEventListener('click', getPosts(token));
+
+  });
+  */
