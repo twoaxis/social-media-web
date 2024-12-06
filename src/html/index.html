@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>TwoAxis</title>
+
+      <link rel="stylesheet" href="css/home.css">
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="loading"></div>
+    <div id="contentt" style="display: none;">
+      <module href="/nav.html"></module>
+      <div class="main-content">
+          <h1>Create a Post</h1>
+          <form id="postForm" class="compact-form">
+              <input type="hidden" id="name" required>
+              <input type="hidden" id="profilePic" required>
+              <textarea id="content" placeholder="What's on your mind?" maxlength="500" required></textarea>
+              <div class="form-footer">
+                  <input type="file" id="media" accept="image/*,video/*" class="file-input">
+                  <span id="charCount">0/500</span>
+                  <button type="submit" class="submit-button">Post</button>
+              </div>
+          </form>
+          <div id="postsContainer"></div>
+      </div>
+      
+      <div class="user-posts-section">
+        <h2>User Posts</h2>
+        <div id="postsContainer"></div>
+        <div class="load-more">
+            <button id="loadMorePosts">Load More Posts</button>
+        </div>
+    </div>
+    
+    
+    </div>
+    <script src="js/auth.js"></script>
+  </body>
+</html>
