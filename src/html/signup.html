@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -40,3 +41,50 @@
 
     </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/auth.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SignUp</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            function handleclick(){window.location.href = 'login.html'}
+        </script>
+    </head>
+    <body>
+    
+    <div class="container" id="container">
+        <!-- signup section -->
+        <div class="auth">
+            <div id="error-message" class="error-message" ></div>
+            <form id="signupForm">
+                <h1>Create Account</h1><br>
+                <div class="names">
+                    <input type="text"  placeholder="First Name" name="fname"required autofocus>
+                    <input type="text" class="lname" placeholder="Last Name" name="lname" required>
+                </div>
+                
+                <input type="text"  placeholder="@username" name="uname" required>
+                <input type="email" placeholder="E-mail" name="email" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <input type="password" placeholder="Confirm Password" name="com-password" required><br>
+                <button class="signup-btn" type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="welcome">
+                <div class="n-account">
+                    <img src="img/logo2.png" id="two-logo"><br><br>
+                    <h1>have account ?</h1><br>
+                    <button id="Login" onclick="handleclick()">Sign in</button>
+                </div>
+        </div>
+    </div>
+    <script src="js/signup.js"></script>
+
+    </body>
+</html>
+>>>>>>> 1d605a7 (move file to src dir)
