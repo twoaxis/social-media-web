@@ -1,4 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> df3a23a (move file to src dir)
+>>>>>>> 48d7d73 (Profile view page (#35))
 @import "master.css";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css");
 
@@ -150,9 +156,15 @@ hr{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px; 
 }
+<<<<<<< HEAD
 =======
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css");
 
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 48d7d73 (Profile view page (#35))
 * {
     margin: 0;
     padding: 0;
@@ -178,6 +190,10 @@ body {
     min-height: 500px;
 }
 .welcome{
+<<<<<<< HEAD
+=======
+    /* background: #FF416C; */
+>>>>>>> 48d7d73 (Profile view page (#35))
 	background: linear-gradient(to right,rgb(94, 25, 25) ,#1f0101e6);
     border-radius: 0 10px 10px 0;
     color: #fff;
@@ -189,6 +205,10 @@ body {
     
 }
 .auth {
+<<<<<<< HEAD
+=======
+    /* background: linear-gradient(to right, #e6dee0, #ff4b2b); */
+>>>>>>> 48d7d73 (Profile view page (#35))
     border-radius: 0 10px 10px 0;
     color: #0b0b0b;
     display: flex;
@@ -242,6 +262,10 @@ form input {
 
 #two-logo{
     width: 200px;
+<<<<<<< HEAD
+=======
+    /* border: #0b0b0b solid 2px; */
+>>>>>>> 48d7d73 (Profile view page (#35))
 }
 button {
 	color: #FFFFFF;
@@ -342,4 +366,10 @@ hr{
         font-size: 23px;
     }
 }
+<<<<<<< HEAD
 >>>>>>> 1a58349 (remove dublication)
+=======
+
+>>>>>>> 1d605a7 (move file to src dir)
+>>>>>>> df3a23a (move file to src dir)
+>>>>>>> 48d7d73 (Profile view page (#35))
