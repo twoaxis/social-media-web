@@ -2,12 +2,14 @@ function getQueryParameter(name) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(name);
 }
+
 function capitalizeWords(str) {
     return str
         .split(' ') // Split the string into words
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter of each word
         .join(' '); // Join the words back into a single string
 }
+
 // Fetch search results from the API
 async function fetchSearchResults(name) {
     try {
@@ -18,7 +20,7 @@ async function fetchSearchResults(name) {
             headers: {
                 Authorization: `Bearer ${token}` // Add the bearer token for authentication
             },
-            params: { query:name }
+            params: { query: name }
         });
 
         // Return the fetched results
@@ -30,8 +32,28 @@ async function fetchSearchResults(name) {
     }
 }
 
+// Fetch follow status for a user
+async function fetchFollowStatus(username) {
+    try {
+        const token = localStorage.getItem('token');
+
+        // Make a GET request to fetch user profile data
+        const response = await axios.get(`http://18.193.81.175/users/${username}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        // Return the isFollowing status from the response
+        return response.data.isFollowing;
+    } catch (error) {
+        console.error(`Error fetching follow status for ${username}:`, error);
+        return false; // Default to not following in case of error
+    }
+}
+
 // Display results dynamically
-function displayResults(results) {
+async function displayResults(results) {
     const resultsContainer = document.getElementById('results-container');
     resultsContainer.innerHTML = ''; // Clear any previous results
 
@@ -40,7 +62,7 @@ function displayResults(results) {
         return;
     }
 
-    results.forEach(result => {
+    for (const result of results) {
         const resultCard = document.createElement('div');
         resultCard.classList.add('result-card');
 
@@ -63,8 +85,18 @@ function displayResults(results) {
         // Friend/Message button
         const button = document.createElement('button');
         button.classList.add('friend-button');
-        button.textContent = 'Message';
-        button.classList.add('message');
+
+        // Fetch and set the initial follow status
+        const isFollowing = await fetchFollowStatus(result.username);
+        if (isFollowing) {
+            button.textContent = 'Message';
+            button.classList.add('message');
+            button.setAttribute('data-following', 'true');
+        } else {
+            button.textContent = 'Follow';
+            button.classList.add('add');
+            button.setAttribute('data-following', 'false');
+        }
 
         // Append elements to the result card
         content.appendChild(name);
@@ -73,7 +105,48 @@ function displayResults(results) {
         resultCard.appendChild(content);
         resultCard.appendChild(button);
         resultsContainer.appendChild(resultCard);
-    });
+
+        // Add click event to toggle follow status
+        button.addEventListener('click', () => {
+            const isFollowing = button.getAttribute('data-following') === 'true';
+            toggleFollow(result.username, isFollowing, button);
+        });
+    }
+}
+
+// Toggle follow status
+async function toggleFollow(username, isFollowing, button) {
+    try {
+        const token = localStorage.getItem('token');
+
+        // Determine the API endpoint based on follow status
+        const endpoint = isFollowing
+            ? `http://18.193.81.175/users/${username}/unfollow`
+            : `http://18.193.81.175/users/${username}/follow`;
+
+        // Make the POST request to toggle follow status
+        await axios.post(endpoint, {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        // Update button text and data-following attribute
+        if (isFollowing) {
+            button.textContent = 'Follow';
+            button.classList.remove('message');
+            button.classList.add('add');
+            button.setAttribute('data-following', 'false');
+        } else {
+            button.textContent = 'Message';
+            button.classList.remove('add');
+            button.classList.add('message');
+            button.setAttribute('data-following', 'true');
+        }
+    } catch (error) {
+        console.error(`Error toggling follow status for ${username}:`, error);
+        alert('An error occurred while toggling follow status.');
+    }
 }
 
 // Load and display search results when the page loads
