@@ -50,7 +50,7 @@ function verifyCode(event) {
         .then(response => {
             console.log('Code verified successfully:', response.data);
             localStorage.setItem('token', response.data.token);
-            window.location.href = 'nav.htm'; 
+            window.location.href = 'index.html'; 
             localStorage.removeItem('sessionId');
             localStorage.removeItem('ref');
         })
