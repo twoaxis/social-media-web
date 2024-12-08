@@ -194,153 +194,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// create Post 
+const postFormOverlay = document.getElementById('post-form-overlay');
 
+plusIcon.addEventListener('click', function () {
+    postFormContainer.style.display = 'block';
+    postFormOverlay.style.display = 'block';
+    contentInput.focus();
+});
 
-async function fetchUserData() {
-   /*const token = `Bearer ${localStorage.getItem('token')}`;
-    try {
-        document.getElementById('name').placeholder = 'Loading...';
-        const response = await fetch(`http://18.193.81.175/users/${localStorage.getItem('token').split(".")[1]}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': token,
-                'Content-Type': 'application/json'
-            }
-        });
-
-
-        if (!response.ok) throw new Error('Failed to fetch user data.');
-        const userData = await response.json();
-        document.getElementById('name').value = userData.name || 'Guest User';
-        document.getElementById('profilePic').value = userData.profilePic || 'img/default-profile.png';
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-        alert('Unable to load profile. Please try again later.');
-    }*/
-}
-
-document.addEventListener('DOMContentLoaded', fetchUserData);
-
-document.getElementById('postForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const profilePic = document.getElementById('profilePic').value;
-    const content = document.getElementById('content').value;
-    const mediaFile = document.getElementById('media').files[0];
-    let mediaHTML = '';
-
-    if (mediaFile) {
-        const mediaURL = URL.createObjectURL(mediaFile);
-        if (mediaFile.type.startsWith('image/')) {
-            mediaHTML = `<img src="${mediaURL}" class="media" alt="Post Media">`;
-        } else if (mediaFile.type.startsWith('video/')) {
-            mediaHTML = `<video src="${mediaURL}" class="media" controls></video>`;
-        }
-    }
-
-    const postHTML = `
-        <div class="post">
-            <div class="post-header">
-                <img src="${profilePic}" alt="Profile Picture" class="profile-pic">
-                <strong>${name}</strong>
-            </div>
-            <p>${content}</p>
-            ${mediaHTML}
-            <div class="post-actions">
-                <button class="like-button" onclick="likePost(this)">Like</button>
-                <button onclick="toggleCommentBox(this)">Comment</button>
-            </div>
-            <div class="comments-section" style="display: none;">
-                <input type="text" placeholder="Add a comment...">
-                <button onclick="addComment(this)">Post Comment</button>
-                <div class="comments-list"></div>
-            </div>
-        </div>
-    `;
-
-    document.getElementById('postsContainer').insertAdjacentHTML('beforeend', postHTML);
-    document.getElementById('postForm').reset();
-
-    // Cleanup media URL to avoid memory leaks
-    if (mediaFile) {
-        URL.revokeObjectURL(mediaURL);
+document.addEventListener('click', function (event) {
+    if (!postFormContainer.contains(event.target) && event.target !== plusIcon) {
+        postFormContainer.style.display = 'none';
+        postFormOverlay.style.display = 'none';
     }
 });
 
-function toggleCommentBox(button) {
-    const commentsSection = button.closest('.post').querySelector('.comments-section');
-    commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
-}
-
-function addComment(button) {
-    const commentInput = button.previousElementSibling;
-    const commentText = commentInput.value;
-
-    if (commentText.trim()) {
-        const commentHTML = `<div class="comment">${commentText}</div>`;
-        const commentsList = button.closest('.comments-section').querySelector('.comments-list');
-        commentsList.insertAdjacentHTML('beforeend', commentHTML);
-        commentInput.value = '';
-    } else {
-        alert('Please enter a comment.');
-    }
-}
-
-function likePost(button) {
-    // Toggle the text and background color for "Liked" state
-    if (button.innerText === 'Like') {
-        button.innerText = 'Liked';
-        button.style.backgroundColor = '#4CAF50'; // Change to a green color for "Liked" state
-    } else {
-        button.innerText = 'Like';
-        button.style.backgroundColor = ''; // Reset to default color
-    }
-}
-
-// Character count update
-document.getElementById('content').addEventListener('input', function() {
-    const charCount = this.value.length;
-    document.getElementById('charCount').innerText = `${charCount}/500`;
-});
-
-
-/*
-function getPosts(token) {
-  fetch('http://18.193.81.175/posts', {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  })
-  .then(response => response.json())
-  .then(posts => {
-    //alert("done",token)
-    console.log("Posts received:", posts);  
-    displayPosts(posts);
-  })
-  .catch(error => console.error('Error retrieving posts:', error));
-}
-
-  function displayPosts(posts) {
-    const postsContainer = document.getElementById('postsContainer');
-    postsContainer.innerHTML = ''; 
-  
-    posts.forEach(post => {
-      const postElement = document.createElement('div');
-      postElement.classList.add('post');
-      postElement.innerHTML = `
-        <h3>${post.author.name} (@${post.author.username})</h3>
-        <p>${post.content}</p>
-        <small>Posted on: ${new Date(post.createdAt).toLocaleString()}</small>
-      `;
-      postsContainer.appendChild(postElement);
-    });
-  }
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const token = localStorage.getItem('token')
-    const bt = document.getElementById('loadMorePosts');
-    bt.addEventListener('click', getPosts(token));
-
-  });
-  */
