@@ -1,3 +1,15 @@
+function escapeHTML(str) {
+  return str.replace(/[&<>"']/g, function (char) {
+    switch (char) {
+      case '&': return '&amp;';
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '"': return '&quot;';
+      case "'": return '&#039;';
+      default: return char;
+    }
+  });
+}
 function fetchPosts() {
   const token = localStorage.getItem('token');
 
@@ -48,17 +60,24 @@ function renderPosts(posts) {
     postCard.classList.add("card", "p-3");
     postCard.innerHTML = `
         <div class="d-flex align-items-center mb-3" style="position: relative;">
-            <span class="name" >${post.author.name}</span>
-            <img src="https://res.cloudinary.com/hkgcdokyp/image/upload/v1688973554/Application_Images/Man_Icon_gdtbii.png" alt="User Image" class="user-img me-3" data-user-id="${post.author.id}" style="position: relative; z-index: 1;">
+            <span class="name">${escapeHTML(post.author.name)}</span>
+            <img src="https://res.cloudinary.com/hkgcdokyp/image/upload/v1688973554/Application_Images/Man_Icon_gdtbii.png" 
+                alt="User Image" 
+                class="user-img me-3" 
+                data-user-id="${post.author.id}" 
+                style="position: relative; z-index: 1;">
             <div>
-                <span class="username" data-user-id="${post.author.id}" style="font-size: small;">@${post.author.username}</span>
+                <span class="username" data-user-id="${post.author.id}" style="font-size: small;">
+                    @${escapeHTML(post.author.username)}
+                </span>
                 <span class="post-date" style="font-size: small; color: gray;">${timeAgo(post.createdAt)}</span>
             </div>
         </div>
-        <p>${post.content}</p>
+        <p>${escapeHTML(post.content)}</p>
         <div class="actions">
             <div>
-                <i class="bi bi-heart" data-index="${index}" data-post-id="${post.id}" style="color: ${post.isLiked ? 'black' : ''};"></i> 
+                <i class="bi bi-heart" data-index="${index}" data-post-id="${post.id}" 
+                   style="color: ${post.isLiked ? 'black' : ''};"></i> 
                 <span id="like-count-${index}">${post.likeCount}</span>
                 <i class="bi bi-chat-right-text" data-index="${index}"></i> 
                 <span id="comment-count-${index}">${post.comments.length}</span>
@@ -68,10 +87,10 @@ function renderPosts(posts) {
             ${post.comments.map(comment => `
                 <div class="comment-box">
                     <div>
-                        <span style="font-weight: bold;">${comment.author.name}</span> 
+                        <span style="font-weight: bold;">${escapeHTML(comment.author.name)}</span> 
                         <span style="font-size: small; color: gray;">${timeAgo(comment.createdAt)}</span>
                     </div>
-                    <p>${comment.content}</p>
+                    <p>${escapeHTML(comment.content)}</p>
                 </div>
             `).join("")}
         </div>
