@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const homePageContent = document.getElementById('cont'); // The home page content to blur
     const postFormOverlay = document.getElementById('post-form-overlay'); // Overlay for the post form
 
-    const apiBaseUrl = 'http://18.193.81.175'; // Base URL for API requests
+    const apiBaseUrl = 'http://social.twoaxis.xyz/api'; // Base URL for API requests
 
     // Show the post form when the plus icon is clicked
     plusIcon.addEventListener('click', function () {

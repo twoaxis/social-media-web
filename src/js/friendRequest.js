@@ -1,4 +1,4 @@
-const apiBaseUrl = 'http://18.193.81.175';
+const apiBaseUrl = 'http://social.twoaxis.xyz/api';
 const token = localStorage.getItem('token'); // Retrieve token from local storage
 let friendRequests = [];
 let friends = [];

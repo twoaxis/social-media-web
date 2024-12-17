@@ -13,7 +13,7 @@ function escapeHTML(str) {
 function fetchPosts() {
   const token = localStorage.getItem('token');
 
-fetch('http://18.193.81.175/posts', {
+fetch('http://social.twoaxis.xyz/api/posts', {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -143,7 +143,7 @@ function handleLikeEvent(event, posts) {
   const post = posts[index];
 
   if (!post.isLiked) {
-    fetch(`http://18.193.81.175/posts/${postId}/like`, {
+    fetch(`http://social.twoaxis.xyz/api/posts/${postId}/like`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -159,7 +159,7 @@ function handleLikeEvent(event, posts) {
       })
       .catch(error => console.error("Error liking post:", error));
   } else {
-    fetch(`http://18.193.81.175/posts/${postId}/unlike`, {
+    fetch(`http://social.twoaxis.xyz/api/posts/${postId}/unlike`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -185,7 +185,7 @@ function handleCommentEvent(event, posts) {
   const commentText = inputField.value.trim();
 
   if (commentText) {
-    fetch(`http://18.193.81.175/posts/${postId}/comment`, {
+    fetch(`http://social.twoaxis.xyz/api/posts/${postId}/comment`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,

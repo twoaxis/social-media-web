@@ -11,7 +11,7 @@ document.getElementById('signinForm').addEventListener('submit', function(event)
     errorMessage.innerHTML = '';
 
     // POST request to authenticate the user
-    axios.post('http://18.193.81.175/auth/login', { email, password })
+    axios.post('http://social.twoaxis.xyz/api/auth/login', { email, password })
         .then(response => {
             const status = response.data.status;
             if (status == 'complete') {

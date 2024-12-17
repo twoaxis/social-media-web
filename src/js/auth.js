@@ -46,7 +46,7 @@ function verifyTokenWithAPI() {
     }
 
     
-    axios.get("http://18.193.81.175/posts", {
+    axios.get("http://social.twoaxis.xyz/api/posts", {
         headers: {
             Authorization: `Bearer ${token}`
         }

@@ -43,7 +43,7 @@ function verifyCode(event) {
 
     // Validate the code: Ensure it is exactly 6 digits
     if (verificationCode.length === 6 && /^[0-9]{6}$/.test(verificationCode)) {
-        axios.post('http://18.193.81.175/auth/verifyemail', {
+        axios.post('http://social.twoaxis.xyz/api/auth/verifyemail', {
             sessionId: localStorage.getItem('sessionId'),
             code: verificationCode
         })

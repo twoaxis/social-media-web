@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://18.193.81.175/users/search', {
+            const response = await axios.get('http://social.twoaxis.xyz/api/users/search', {
                 headers: {
                     Authorization: `Bearer ${token}` 
                 },
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert("You're not logged in.");
                 return;
             }
-            const response = await fetch('http://18.193.81.175/auth/logout', {
+            const response = await fetch('http://social.twoaxis.xyz/api/auth/logout', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

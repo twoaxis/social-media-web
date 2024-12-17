@@ -16,7 +16,7 @@ async function fetchSearchResults(name) {
         const token = localStorage.getItem('token'); 
 
         // Make a GET request to the API with the query parameter
-        const response = await axios.get('http://18.193.81.175/users/search', {
+        const response = await axios.get('http://social.twoaxis.xyz/api/users/search', {
             headers: {
                 Authorization: `Bearer ${token}` // Add the bearer token for authentication
             },
@@ -38,7 +38,7 @@ async function fetchFollowStatus(username) {
         const token = localStorage.getItem('token');
 
         // Make a GET request to fetch user profile data
-        const response = await axios.get(`http://18.193.81.175/users/${username}`, {
+        const response = await axios.get(`http://social.twoaxis.xyz/api/users/${username}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -121,8 +121,8 @@ async function toggleFollow(username, isFollowing, button) {
 
         // Determine the API endpoint based on follow status
         const endpoint = isFollowing
-            ? `http://18.193.81.175/users/${username}/unfollow`
-            : `http://18.193.81.175/users/${username}/follow`;
+            ? `http://social.twoaxis.xyz/api/users/${username}/unfollow`
+            : `http://social.twoaxis.xyz/api/users/${username}/follow`;
 
         // Make the POST request to toggle follow status
         await axios.post(endpoint, {}, {
