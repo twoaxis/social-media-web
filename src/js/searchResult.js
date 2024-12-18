@@ -66,6 +66,11 @@ async function displayResults(results) {
         const resultCard = document.createElement('div');
         resultCard.classList.add('result-card');
 
+        // Add click event to navigate to profile view page
+        resultCard.addEventListener('click', () => {
+            window.location.href = `profile-view-page.html?username=${result.username}`;
+        });
+
         // Avatar placeholder
         const avatar = document.createElement('div');
         avatar.classList.add('avatar');

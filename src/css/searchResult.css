@@ -121,6 +121,8 @@ body {
 }
 
 
-
+.result-card {
+    cursor: pointer; /* Changes cursor to a pointer (hand icon) */
+}
 
 
