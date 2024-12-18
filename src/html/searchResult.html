@@ -13,40 +13,8 @@
 <body>
     <div id="loading"></div>
     <div id="contentt" style="display: none;">
-        <nav class="navbar">
-            <a class="navbar-brand" href="#">
-                <img src="img/logo.png" alt="Logo" class="logo">
-            </a>
-            <div class="nav-icons-center">
-                <a class="nav-link" href="#"><i class="bi bi-plus-circle" id="plus-icon"></i></a>
-                <div class="search-container">
-                    <a class="nav-link" href="#"><i class="bi bi-search" id="search-icon"></i></a>
-                    <input type="text" id="search-input" class="search-input" placeholder="Search..." name="name" />
-                    <div id="suggestion-box" class="suggestion-box"></div>
-                </div>
-                <a class="nav-link" href="#"><i class="bi bi-messenger" id="messenger-icon"></i></a>
-            </div>
-            <div class="navbar-right">
-                <a class="nav-link" href="#"><i class="bi bi-house-door"></i></a>
-                <a class="nav-link" href="#"><i class="bi bi-play-btn"></i></a>
-                <a class="nav-link" href="#"><i class="bi bi-people"></i></a>
-                <a class="nav-link notification-icon" href="#" id="notification-icon"><i class="bi bi-bell"></i></a>
-                <a class="nav-link" href="#"><i class="bi bi-list"></i></a>
-                <a class="nav-link" href="#"><i class="bi bi-person-circle"></i></a>
-            </div>
-        </nav>
+        <module href="/nav.html"></module>
 
-
-        <div class="notification-dropdown" id="notificationDropdown">
-            <h4>Notifications</h4>
-            <div id="notificationList"> </div>
-            <div class="notification-item"><strong>New Friend Request </strong>You have a new friend request.</div>
-            <div class="notification-item"><strong>Post liked </strong>Someone liked your post.</div>
-            <div class="notification-item"><strong>Unread Messages  </strong> You have 5 unread messages.</div>
-            <div class="notification-item"><strong>Latest Updates  </strong> Check out the latest updates.</div>
-            <div class="notification-item"><strong>Unread Messages  </strong>You have 5 unread messages.</div>
-            <div class="notification-item"><strong>Latest Updates  </strong>Check out the latest updates.</div>
-        </div>
         <div class="container mt-4">
             <h1 id="selected-name">Search Results</h1>
             <div id="results-container" class="d-flex flex-column align-items-center"></div>

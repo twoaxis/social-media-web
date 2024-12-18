@@ -22,7 +22,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     }
 
     // POST request to register the user
-    axios.post('http://18.193.81.175/auth/signup', { name, username: uname, email, password })
+    axios.post('http://social.twoaxis.xyz/api/auth/signup', { name, username: uname, email, password })
         .then(response => {
             const sessionId = response.data.sessionId;
             localStorage.setItem('sessionId', sessionId);

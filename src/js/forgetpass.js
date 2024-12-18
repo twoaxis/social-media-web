@@ -26,7 +26,7 @@ function handleFormSubmit(event) {
     console.log('Submitting email for validation:', email);
 
     // API request to validate the email
-    axios.post('http://18.193.81.175/auth/signup', {name, username, email, password })
+    axios.post('http://social.twoaxis.xyz/api/auth/signup', {name, username, email, password })
         .catch((error) => {
             errorMessage.style.display = 'block';
             console.log('Error received:', error);

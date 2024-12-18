@@ -12,24 +12,20 @@
     <div id="loading"></div>
     <div id="contentt" style="display: none;">
       <module href="/nav.html"></module>
-      <div class="main-content">
-          <h1>Create a Post</h1>
-          <form id="postForm" class="compact-form">
-              <input type="hidden" id="name" required>
-              <input type="hidden" id="profilePic" required>
-              <textarea id="content" placeholder="What's on your mind?" maxlength="500" required></textarea>
-              <div class="form-footer">
-                  <input type="file" id="media" accept="image/*,video/*" class="file-input">
-                  <span id="charCount">0/500</span>
-                  <button type="submit" class="submit-button">Post</button>
-              </div>
+      <div id="post-form-overlay"></div>
+      <div id="post-form-container">
+          <h2>Create a Post</h2>
+          <button id="close-button" class="close-button">X</button>
+          <form id="postForm">
+              <textarea id="content" maxlength="500" placeholder="What's on your mind?"></textarea>
+              <div id="charCount">0/500</div>
+              <button type="submit">Post</button>
           </form>
-          <div id="postsContainer"></div>
       </div>
 
-      <main class="container">
+
+      <main class="container" style="display: none;" id="cont">
         <div id="posts">
-          <div class="actions">
         </div>
         </div>
       </main>
