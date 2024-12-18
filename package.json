@@ -28,13 +28,13 @@
   "homepage": "https://github.com/twoaxis/social-media-web#readme",
   "devDependencies": {
     "concurrently": "^9.1.0",
-    "cpx": "^1.5.0",
+    "cpx": "^1.2.1",
     "htmlnano": "^2.1.1",
-    "live-server": "^1.2.2",
+    "live-server": "^1.2.0",
     "onchange": "^7.1.0",
     "postcss": "^8.4.49",
     "posthtml": "^0.16.6",
-    "posthtml-cli": "^0.10.0",
+    "posthtml-cli": "^0.7.7",
     "posthtml-include": "^2.0.1",
     "posthtml-modules": "^0.9.1"
   }

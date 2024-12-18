@@ -1,0 +1,477 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: white;
+}
+
+.comments{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.162);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.comments.active{
+    display: flex;
+}
+
+.comments .box{
+    width: 400px;
+    height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    display: none;
+}
+.comments.active .box{
+    display: block;
+}
+
+.delete{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.delete:hover{
+    cursor: pointer;
+    background-color: #c6c5c5;
+}
+.background{
+    background: url(../img/pexels-dreamypixel-547114.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 50vh;
+    position: relative;
+}
+
+.profile-img .content{
+    position: absolute;
+    width: fit-content;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.profile-img .content img{
+    width: 150px;
+    border-radius: 50%;
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Roboto';
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.info h3 + h4{
+    margin-top: 0;
+    color: #dadada;
+    margin-bottom: 5px;
+}
+
+.info .followers{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 40px;
+    margin-bottom: 20px;
+}
+
+.info .follower, .info .following{
+display: flex;
+align-items: center;
+column-gap: 5px;
+}
+
+.info .followers h4{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.info .buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    column-gap: 20px;
+}
+
+.info .buttons button{
+    border: none;
+    border-radius: 20px;
+    padding: 7px 15px;
+    background-color: transparent;
+    font-family: 'Roboto';
+    text-transform: capitalize;
+    font-size: 15px;
+    background-color: #eee;
+    width: 110px;
+}
+
+.info .buttons button:hover{
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.088);
+}
+
+.buttons button:active{
+    background-color: #ca2c2c !important;
+    color: white;
+}
+
+.show-friends{
+    position: absolute;
+    left: -52.5px;
+    top: 40px;
+    z-index: 10000;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    background-color: #ca2c2c;
+    border: none;
+    color: white;
+    border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    -o-border-radius: 3px 3px 0 0;
+    font-family: 'Roboto';
+    padding: 7px 12px;
+    font-size: 15px;
+    display: none;
+}
+
+
+.show-friends:hover{
+    cursor: pointer;
+    background-color: #ab2323;
+}
+
+.show-friends:active{
+    background-color: white;
+    color: #ca2c2c;
+}
+
+.fields{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.friends{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 30px;
+    font-family: 'Roboto';
+    position: relative;
+}
+
+.friends .friends-content{
+    width: 380px;
+}
+
+.friends .friends-content h3{
+    letter-spacing: 0.7px;
+    margin-left: 15px;
+}
+
+.posts h3{
+    font-family: 'Roboto';
+}
+
+.friends .friends-content .content{
+    height: 300px;
+    width: 100%;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 100px));
+    gap: 10px;
+    column-gap: 20px;
+    padding: 15px;
+    padding-right: 0;
+    padding-top: 15px;
+    overscroll-behavior-block: contain;
+}
+
+.friends .friends-content .content div{
+    background-color: #eee;
+    border-radius: 6px;
+    transition: all 0.3s;
+    width: 105px;
+}
+
+.friends .friends-content .content div:active{
+    background-color: #ca2c2c;
+    color: white;
+}
+
+.friends .friends-content .content div:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.friends .friends-content .content::-webkit-scrollbar{
+    width: 10px;
+}
+
+.friends .friends-content .content::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #ca2c2c;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.friends .friends-content .content::-webkit-scrollbar{
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+.friends .friends-content .content img{
+ width: 100%;
+ border-radius: 6px 6px 0 0;
+ object-fit: cover;
+}
+
+.friends .friends-content .content div h4{
+    margin-top: 0px;
+    margin-left: 8px;
+}
+
+.posts .posts-content .user-img img{
+    border-radius: 50%;
+    width: 49px;
+}
+
+.posts .posts-content .user-img{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.posts .posts-content .user-img .post-info{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 5px;
+    font-family: 'Roboto';
+}
+
+.posts .posts-content .user-img .post-info p{
+    margin: 0;
+}
+
+.posts .posts-content .user-img .post-info p:first-of-type{
+    font-size: 15px;
+}
+
+.posts .posts-content .user-img .post-info p:last-of-type{
+   font-size: 13px;
+}
+
+.posts .posts-content .description{
+font-family: 'Roboto';
+font-size: 13px;
+padding-top: 10px;
+}
+
+.posts .posts-content .description p{
+    line-height: 1.6;
+}
+
+.posts .posts-content .post-img img{
+    width: 100%;
+}
+
+.posts .actions button{
+    width: calc(100% / 2);
+    border: none;
+    height: 45px;
+    background-color: #dadada;
+}
+
+.posts .actions button:nth-child(2){
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+.posts .actions button:hover{
+    cursor: pointer;
+    background-color: #c6c5c5;
+}
+
+.posts .actions button:active{
+    background-color: #ca2c2c;
+    color: white;
+}
+
+.posts .actions button:nth-child(2){
+    border-bottom-right-radius: 7px;
+}
+
+.posts .actions button:nth-child(1){
+    border-bottom-left-radius: 7px;
+}
+
+.posts .actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.posts .actions button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.posts .actions button img{
+    margin-right: 6px;
+}
+
+@media (max-width: 850px){
+    .fields{
+        justify-content: center;
+    }
+
+    .friends-all{
+        position: fixed;
+        top: 370px;
+        right: 0;
+        background-color: white;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        z-index: 10000;
+        transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+        transition-duration: 0.3s;
+        padding-bottom: 40px;
+    }
+
+    .show-friends{
+        display: block;
+    }
+
+    .friends-all.active{
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+        -moz-transform: translateX(0);
+        -ms-transform: translateX(0);
+        -o-transform: translateX(0);
+    }
+
+    .backdrop-friends{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.208);
+        z-index: 100;
+        display: none;
+    }
+
+    .backdrop-friends.active{
+        display: block;
+    }
+}
+
+@media (max-width: 470px){
+
+    .profile-img .content img{
+        width: 120px;
+    }
+
+    .info .followers h4{
+        font-size: 15px;
+    }
+
+    .info .buttons button{
+        width: 100px;
+        padding: 7px 10px;
+        font-size: 14px;
+    }
+
+    .info .bio p{
+        font-size: 14px;
+    }
+
+    .info h3{
+        font-size: 18px;
+    }
+
+    .posts h3{
+        font-size: 17px;
+    }
+
+    .posts .posts-container .content{
+        width: 330px !important;
+    }
+
+    .posts .posts-content .user-img img{
+        width: 45px;
+    }
+
+    .posts .posts-content .user-img .post-info p:first-of-type{
+        font-size: 13px;
+    }
+
+    .posts .posts-content .user-img .post-info p:last-of-type{
+        font-size: 10px;
+    }
+
+    .posts .posts-container .content .posts-content p{
+        font-size: 11px;
+    }
+
+    .posts .actions button{
+        font-size: 11px;
+    }
+}
